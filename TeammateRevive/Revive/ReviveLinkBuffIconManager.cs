@@ -13,12 +13,13 @@ namespace TeammateRevive.Revive
         private bool decreasing = false;
         private float elapsedTime = 0;
         
+        //This might be broken, used to be an Update() hook
         public ReviveLinkBuffIconManager()
         {
-            On.RoR2.UI.BuffIcon.Update += Hook_Update;
+            On.RoR2.UI.BuffIcon.UpdateIcon += Hook_Update;
         }
 
-        private void Hook_Update(On.RoR2.UI.BuffIcon.orig_Update orig, BuffIcon buffIcon)
+        private void Hook_Update(On.RoR2.UI.BuffIcon.orig_UpdateIcon orig, BuffIcon buffIcon)
         {
             orig(buffIcon);
 

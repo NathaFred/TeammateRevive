@@ -23,14 +23,18 @@ using UnityEngine.Networking;
 
 namespace TeammateRevive
 {
-    [BepInDependency("com.bepis.r2api")]
     [BepInDependency("dev.ontrigger.itemstats", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.KingEnderBrine.InLobbyConfig", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(RiskOfOptionsIntegration.Guid, BepInDependency.DependencyFlags.SoftDependency)]
-    
+
+    [BepInDependency("com.bepis.r2api")]
+    [BepInDependency(R2API.ItemAPI.PluginGUID)]
+    [BepInDependency(R2API.PrefabAPI.PluginGUID)]
+    [BepInDependency(R2API.Networking.NetworkingAPI.PluginGUID)]
+    [BepInDependency(R2API.LanguageAPI.PluginGUID)]
+    [BepInDependency(R2API.ContentManagement.R2APIContentManager.PluginGUID)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
-    [R2APISubmoduleDependency(nameof(PrefabAPI), nameof(NetworkingAPI), nameof(ItemAPI), nameof(LanguageAPI))]
     public class MainTeammateRevival : BaseUnityPlugin
     {
         #region Plugin variables
@@ -51,8 +55,6 @@ namespace TeammateRevive
         private RunTracker run;
         private RevivalTracker revivalTracker;
         
-        private ItemsStatsModIntegration itemsStatsModIntegration;
-        private BetterUiModIntegration betterUiModIntegration;
         private InLobbyConfigIntegration inLobbyConfigIntegration;
         private RiskOfOptionsIntegration riskOfOptionsIntegration;
         
@@ -87,8 +89,6 @@ namespace TeammateRevive
                 deathTotemTracker, rules);
             revivalTracker = new RevivalTracker(players, run, rules, deathTotemTracker, progressBarTracker);
         
-            itemsStatsModIntegration = new ItemsStatsModIntegration(rules);
-            betterUiModIntegration = new BetterUiModIntegration();
             consoleCommands = new ConsoleCommands(rules, pluginConfig);
             linkBuffIconManager = new ReviveLinkBuffIconManager();
             inLobbyConfigIntegration = new InLobbyConfigIntegration(pluginConfig);

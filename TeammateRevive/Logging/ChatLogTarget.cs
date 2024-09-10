@@ -19,7 +19,8 @@ namespace TeammateRevive.Logging
                 _ => Color.blue
             };
 
-            ChatMessage.SendColored(msg.ToString(), color);
+            //TODO:FIX
+            //ChatMessage.SendColored(msg.ToString(), color);
         }
     }
 }
