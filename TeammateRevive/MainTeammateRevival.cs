@@ -42,7 +42,7 @@ namespace TeammateRevive
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "KosmosisDire";
         public const string PluginName = "TeammateRevival";
-        public const string PluginVersion = "4.1.3";
+        public const string PluginVersion = "4.2.1";
         
         #endregion
         
