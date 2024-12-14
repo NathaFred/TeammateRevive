@@ -35,8 +35,8 @@ namespace TeammateRevive.Revive
 
             this.players.OnPlayerDead += OnPlayerDead;
             this.players.OnPlayerAlive += OnPlayerAlive;
-            
-            On.RoR2.Stage.Start += OnStageStart;
+
+            RoR2.Stage.onStageStartGlobal += OnStageStart;
         }
 
         #region Event handlers
@@ -54,9 +54,8 @@ namespace TeammateRevive.Revive
             }
         }
 
-        void OnStageStart(On.RoR2.Stage.orig_Start orig, Stage self)
+        void OnStageStart(Stage self)
         {
-            orig(self);
             var sceneName = self.sceneDef.cachedName;
             Log.Debug($"Stage start: {self.sceneDef.cachedName}");
             deathTotemTracker.Clear();
@@ -130,7 +129,8 @@ namespace TeammateRevive.Revive
                     var playerBody = reviver.GetBody();
                     var hasReviveEverywhere = playerBody.inventory.GetItemCount(DeadMansHandItem.Index) > 0;
                     var inRange = hasReviveEverywhere || Vector3.Distance(playerBody.transform.position, deathTotem.transform.position) < (actualRange * .5);
-                    if (inRange)
+                    var isHitboxValid = !rules.Values.RequireHitboxesActive || !playerBody.disablingHurtBoxes;//REQUIRES PUBLICIZED ASSEMBLY
+                    if (inRange && isHitboxValid)
                     {
                         playersInRange++;
                         

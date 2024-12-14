@@ -16,7 +16,7 @@ namespace TeammateRevive.Configuration
         public bool FileLogging { get; set; }
         public string FileLoggingPath { get; set; }
         public bool GodMode { get; set; }
-        
+
         public bool HideDeathCurseItemsInLogBook { get; private set; }
         public bool HideDeathCurseArtifact { get; private set; }
 
@@ -236,7 +236,12 @@ namespace TeammateRevive.Configuration
                     set: v => values.PostReviveRegenDurationSec = v,
                     defaultValue: values.PostReviveRegenDurationSec,
                     metadata: new FloatMetadata(0, 30, 1)
-                );
+                )
+                .Bind(
+                    key: "Require hitboxes active",
+                    description: "Prevent players from reviving if their hitboxes are disabled via Strides of Heresy or other similar skills.",
+                    set: v => values.RequireHitboxesActive = v,
+                    defaultValue: false);
         }
 
         static BindCollection BindMisc(ConfigFile configFile, PluginConfig config)

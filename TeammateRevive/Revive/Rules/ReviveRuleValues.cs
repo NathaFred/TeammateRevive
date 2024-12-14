@@ -35,6 +35,8 @@
 
         public float ReviverDeathCurseChance { get; set; } = 66f;
 
+        public bool RequireHitboxesActive { get; set; } = false;
+
         public ReviveRuleValues Clone()
         {
             return (ReviveRuleValues)MemberwiseClone();

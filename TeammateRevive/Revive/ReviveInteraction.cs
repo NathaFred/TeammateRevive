@@ -55,7 +55,8 @@ namespace TeammateRevive.Revive
 
             if (!playerHasRespawnItem)
             {
-                ChatMessage.SendColored(Language.GetString(LanguageConsts.TEAMMATE_REVIVAL_UI_NO_OBOL), Color.red);
+                //TODO: Fix
+                //ChatMessage.SendColored(Language.GetString(LanguageConsts.TEAMMATE_REVIVAL_UI_NO_OBOL), Color.red);
                 return;
             }
 
@@ -78,5 +79,10 @@ namespace TeammateRevive.Revive
         public void OnEnable() => InstanceTracker.Add(this);
 
         public void OnDisable() => InstanceTracker.Remove(this);
+
+        public bool ShouldProximityHighlight()
+        {
+            return false;
+        }
     }
 }

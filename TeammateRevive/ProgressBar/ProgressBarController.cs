@@ -88,7 +88,7 @@ namespace TeammateRevive.ProgressBar
                 }
             }
 
-            Vector2 parentSize = progressBarTransform.GetParentSize();
+            Vector2 parentSize = GetParentSize(progressBarTransform);
 
             //fallback values in case healthbar is not found
             Vector2 size = new Vector2(Screen.width/3.5f, Screen.height/27f);
@@ -172,6 +172,13 @@ namespace TeammateRevive.ProgressBar
             Log.Debug("HUDOnAwake");
             orig(self);
             AttachProgressBar(self);
+        }
+
+        private Vector2 GetParentSize(RectTransform transform)
+        {
+            RectTransform parent = transform.parent as RectTransform;
+
+            return parent == null ? Vector2.zero : parent.rect.size;
         }
     }
 }
